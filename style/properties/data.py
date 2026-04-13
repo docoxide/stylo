@@ -1023,7 +1023,7 @@ class PropertiesData(object):
             property.aliases.append(("-%s-%s" % (prefix, property.name), pref))
 
     def declare_longhand(self, style_struct, name, extra_gecko_aliases=None, engine=None, **kwargs):
-        if engine and self.engine != engine:
+        if engine and self.engine not in engine.split():
             return
         if extra_gecko_aliases and self.engine == "gecko":
             kwargs.setdefault('aliases', []).extend(extra_gecko_aliases)
@@ -1042,7 +1042,7 @@ class PropertiesData(object):
         return longhand
 
     def declare_shorthand(self, name, sub_properties, extra_gecko_sub_properties=None, extra_gecko_aliases=None, engine=None, *args, **kwargs):
-        if engine and self.engine != engine:
+        if engine and self.engine not in engine.split():
             return
         if self.engine == "gecko":
             if extra_gecko_sub_properties:
